@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Taskio.Views.ItemView" BackgroundColor="Accent"  WidthRequest="100" HeightRequest="100" >
+   
+    <ContentView.Content>
+  
+          <Frame OutlineColor="Black">
+            <StackLayout x:Name="MainLayout" Orientation="Horizontal">
+                <StackLayout x:Name="Image" WidthRequest="50" HeightRequest="50">
+                    <Image></Image>
+                </StackLayout>
+                <StackLayout x:Name="Detail" HorizontalOptions="End">
+                    
+                    
+                </StackLayout>
+            </StackLayout>
+          </Frame>
+    
+  </ContentView.Content>
+</ContentView>
