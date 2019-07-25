@@ -16,12 +16,14 @@ namespace Taskio.Views
 		public ItemView (Items item)
 		{
             InitializeComponent ();
+            this.BackgroundColor = Color.FromRgba(148,160,179,1);
             Label l1 = new Label() {Text=item.Name };
             Label l2 = new Label() {Text=item.Num.ToString()};
             Label l3 = new Label() {Text= item.quantity.ToString()};
             Detail.Children.Add(l1);
             Detail.Children.Add(l2);
             Detail.Children.Add(l3);
+            
 		}
 	}
 }

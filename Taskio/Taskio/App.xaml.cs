@@ -2,20 +2,26 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Taskio.Views;
+using Android.Provider;
+using Android.Database;
+using System.Collections.Generic;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Taskio
 {
     public partial class App : Application
     {
         public static INavigation GlobalNavigation { get; private set; }
-        public App()
+        public static List<string> GetPhotoPathAnywhere { get; protected set; }
+        public App(List<string> photoPath)
         {
             InitializeComponent();
-            var masterDetail = new MasterDetailPage();
-            masterDetail.Title = "TASKIO";
-            masterDetail.Detail = new LoadPage();
-            masterDetail.Master = new SideNavBar();
-            var rootPage = new NavigationPage(masterDetail);
+            GetPhotoPathAnywhere = photoPath;
+            //var masterDetail = new MasterDetailPage();
+            //masterDetail.Title = "TASKIO";
+            //masterDetail.Detail = new LoadPage();
+            //masterDetail.Master = new SideNavBar();
+            var rootPage = new NavigationPage(new LoadPage());
             GlobalNavigation = rootPage.Navigation;
             MainPage = rootPage;
         }

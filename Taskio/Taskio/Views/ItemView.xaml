@@ -11,8 +11,6 @@
                     <Image></Image>
                 </StackLayout>
                 <StackLayout x:Name="Detail" HorizontalOptions="End">
-                    
-                    
                 </StackLayout>
             </StackLayout>
           </Frame>
