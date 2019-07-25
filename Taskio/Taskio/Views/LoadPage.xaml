@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Taskio.Views.LoadPage" Title="Home">
     <ContentPage.Content>
-        <ScrollView BackgroundColor="Black">
-            <Grid BackgroundColor="Aqua" x:Name="Grid" RowSpacing="10" >
+        <ScrollView>
+            <Grid  x:Name="Grid" RowSpacing="10" >
                 
                 <Grid.RowDefinitions>
                     <RowDefinition  Height="*"/>
@@ -23,6 +23,5 @@
                 </Grid.ColumnDefinitions>
             </Grid>
         </ScrollView>
-        
     </ContentPage.Content>
 </ContentPage>
