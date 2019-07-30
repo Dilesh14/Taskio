@@ -13,15 +13,15 @@ namespace Taskio
     {
         public static INavigation GlobalNavigation { get; private set; }
         public static List<string> GetPhotoPathAnywhere { get; protected set; }
-        public App(List<string> photoPath)
+        public App()
         {
             InitializeComponent();
-            GetPhotoPathAnywhere = photoPath;
+            //GetPhotoPathAnywhere = photoPath;
             //var masterDetail = new MasterDetailPage();
             //masterDetail.Title = "TASKIO";
             //masterDetail.Detail = new LoadPage();
             //masterDetail.Master = new SideNavBar();
-            var rootPage = new NavigationPage(new LoadPage());
+            var rootPage = new NavigationPage(new StartAppLandingPage());
             GlobalNavigation = rootPage.Navigation;
             MainPage = rootPage;
         }

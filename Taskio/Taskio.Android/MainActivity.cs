@@ -14,11 +14,11 @@ using static Android.Support.V4.App.ActivityCompat;
 
 namespace Taskio.Droid
 {
-    [Activity(Label = "Taskio", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Taskio", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,LaunchMode =LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ActivityCompat.IOnRequestPermissionsResultCallback
     {
         private PhotoObserver photoObserver;
-        private DeviceManager deviceManager = new DeviceManager();
+        //private DeviceManager deviceManager = new DeviceManager();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -27,8 +27,8 @@ namespace Taskio.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             if (ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.ReadExternalStorage) == Permission.Granted)
             {
-                List<string> PhotoPath = deviceManager.BuildImageMedia();
-                LoadApplication(new App(PhotoPath));
+                //List<string> PhotoPath = deviceManager.BuildImageMedia();
+                LoadApplication(new App());
             }
             else
             {
@@ -44,8 +44,8 @@ namespace Taskio.Droid
             {
                 if (grantResults.Length == 1 && grantResults[0] == Permission.Granted)
                 {
-                    List<string> PhotoPath = deviceManager.BuildImageMedia();
-                    LoadApplication(new App(PhotoPath));
+                    //List<string> PhotoPath = deviceManager.BuildImageMedia();
+                    LoadApplication(new App());
                 }
             }
             else

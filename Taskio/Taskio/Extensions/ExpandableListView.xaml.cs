@@ -17,16 +17,21 @@ namespace Taskio.Extensions
         public string Button { get; set; } = "X";
         private bool IsExpanded;
         private bool IsExpanding;
-        public ExpandableListView()
+        public ExpandableListView(IEnumerable<object> items)
         {
             InitializeComponent();
             ContentLayout.HeightRequest = 0;
+            ExpandableContent = items;
+            OnPropertyChanged("ExpandableContent");
+            OnPropertyChanged("HeaderText");
+            OnPropertyChanged("Button");
             AddHeader();
             AddContent();
-
         }
         private void AddHeader()
         {
+            OnPropertyChanged("HeaderText");
+            OnPropertyChanged("Button");
             ExpanadableListElement HeadName = new ExpanadableListElement { Display = HeaderText, Button = Button };
             Header.Children.Add(HeadName);
             Header.Children.Add
@@ -34,9 +39,10 @@ namespace Taskio.Extensions
                     new BoxView
                     {
                         HeightRequest = 1,
-                        HorizontalOptions = LayoutOptions.FillAndExpand
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        BackgroundColor = Color.Black
                     }
-                );
+                ); ;
         }
         private void AddContent()
         {
@@ -49,30 +55,45 @@ namespace Taskio.Extensions
                         Button = "-"
                     }
                     );
+                Content.Children.Add
+                    (
+                        new BoxView
+                        {
+                            HeightRequest = 1,
+                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                            BackgroundColor = Color.Black
+                        }
+                    );
             }
-            Content.Children.Add
-                (
-                    new BoxView
-                    {
-                        HeightRequest = 1,
-                        HorizontalOptions = LayoutOptions.FillAndExpand
-                    }
-                );
         }
         private async void HeaderTapped(object sender, EventArgs e)
         {
-            var height = Content.Height; 
+            ExpanadableListElement child = new ExpanadableListElement();
+            StackLayout comingfrom = sender as StackLayout;
+            if(comingfrom.Children.Any(x=>x is ExpanadableListElement))
+            {
+                child = (ExpanadableListElement)comingfrom.Children.Where(x => x is ExpanadableListElement).ToList().First();
+            }
+            var height = Content.Height;
             if (!IsExpanding)
             {
                 if (IsExpanded)
                 {
                     IsExpanded = false;
                     ContentLayout.HeightRequest = 0;
+                    ContentLayout.Opacity = 0;
+                    comingfrom.BackgroundColor = Color.White;
+                    ContentLayout.IsVisible = false;
                 }
                 else
                 {
                     ContentLayout.HeightRequest = height;
+                    ContentLayout.Opacity = 1;
+                    ContentLayout.IsVisible = true;
+                    comingfrom.BackgroundColor = Color.Gray;
                     IsExpanded = true;
+                    child.Button = ">";
+                    OnPropertyChanged("Button");
                 }
             }
         }
