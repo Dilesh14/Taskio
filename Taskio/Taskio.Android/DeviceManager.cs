@@ -21,31 +21,34 @@ namespace Taskio.Droid
     public class DeviceManager
     {
         private Android.Net.Uri uri = MediaStore.Images.Media.ExternalContentUri;
-        string[] projection = { MediaStore.MediaColumns.Data };
+        string[] projection = { MediaStore.Images.ImageColumns.Id, MediaStore.Images.ImageColumns.Data };
         public static int PERMISSION_TO_READ_PHOTO = 100;
-        private IDictionary<string, string> PhotoInfo;
+        private IDictionary<string, string> PhotoInfo=new Dictionary<string,string>();
         ICursor cursor;
         public static int PhotoCount { get; protected set; }
         public DeviceManager()
         {
             
         }
-        public List<string> BuildImageMedia()
+        public IDictionary<string,string> BuildImageMedia()
         {
+            int count = 0;
             List<string> PhotoAndPath = new List<string>();
             cursor = Application.Context.ApplicationContext.ContentResolver.Query(uri,projection,null,null);
             PhotoCount = cursor.Count;
             while (cursor.MoveToNext())
             {
-                string absolutePathOfImage = cursor.GetString(cursor.GetColumnIndexOrThrow(MediaStore.MediaColumns.Data));
-                PhotoAndPath.Add(absolutePathOfImage);
-                string PhotoName = cursor.GetString(cursor.GetColumnIndex(MediaStore.MediaColumns.DisplayName));
-                string PhotoPath = cursor.GetString(cursor.GetColumnIndex(MediaStore.Images.ImageColumns.BucketDisplayName));
-                Console.WriteLine($"{PhotoName}--------------:${PhotoPath}");
+                string PhotoName = cursor.GetString(cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Id));
+                string PhotoPath = cursor.GetString(cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data));
                 PhotoInfo.Add(PhotoName, PhotoPath);
+                count++;
+                if(count >= 15)
+                {
+                    break;
+                }
             }
             cursor.Close();
-            return PhotoAndPath;
+            return PhotoInfo;
         }
     }
 }

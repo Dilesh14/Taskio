@@ -17,8 +17,8 @@
                         <ColumnDefinition Width="105"/>
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Display}" Grid.ColumnSpan="2" Grid.Column="0" HorizontalOptions="Start"/>
-                    <Label Text="{Binding Button}" Grid.Column="2"/>
+                    <Label Text="{Binding LabelDisplay}" Grid.ColumnSpan="2" Grid.Column="0" HorizontalOptions="Start"/>
+                    <Label Text="{Binding ButtonDisplay}" Grid.Column="2"/>
                 </Grid>
             </StackLayout>
         </StackLayout>

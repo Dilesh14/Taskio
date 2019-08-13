@@ -18,7 +18,7 @@ namespace Taskio.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ActivityCompat.IOnRequestPermissionsResultCallback
     {
         private PhotoObserver photoObserver;
-        //private DeviceManager deviceManager = new DeviceManager();
+        private DeviceManager deviceManager = new DeviceManager();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -27,8 +27,8 @@ namespace Taskio.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             if (ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.ReadExternalStorage) == Permission.Granted)
             {
-                //List<string> PhotoPath = deviceManager.BuildImageMedia();
-                LoadApplication(new App());
+                IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();
+                LoadApplication(new App(PhotoPath));
             }
             else
             {
@@ -44,8 +44,8 @@ namespace Taskio.Droid
             {
                 if (grantResults.Length == 1 && grantResults[0] == Permission.Granted)
                 {
-                    //List<string> PhotoPath = deviceManager.BuildImageMedia();
-                    LoadApplication(new App());
+                    IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();
+                    LoadApplication(new App(PhotoPath));
                 }
             }
             else

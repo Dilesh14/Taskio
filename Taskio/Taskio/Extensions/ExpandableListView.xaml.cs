@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Taskio.HelperViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,16 +22,11 @@ namespace Taskio.Extensions
             InitializeComponent();
             ContentLayout.HeightRequest = 0;
             ExpandableContent = items;
-            OnPropertyChanged("ExpandableContent");
-            OnPropertyChanged("HeaderText");
-            OnPropertyChanged("Button");
             AddHeader();
             AddContent();
         }
         private void AddHeader()
         {
-            OnPropertyChanged("HeaderText");
-            OnPropertyChanged("Button");
             ExpanadableListElement HeadName = new ExpanadableListElement { Display = HeaderText, Button = Button };
             Header.Children.Add(HeadName);
             Header.Children.Add
