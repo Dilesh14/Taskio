@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Taskio.Droid
+namespace Taskio.Interface
 {
     public interface IPhotoPicker
     {

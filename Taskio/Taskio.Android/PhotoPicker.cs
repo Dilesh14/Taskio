@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Taskio.Droid;
+using Taskio.Interface;
 using Xamarin.Forms;
 [assembly: Dependency(typeof(PhotoPicker))]
 namespace Taskio.Droid
@@ -23,6 +24,12 @@ namespace Taskio.Droid
             Intent intent = new Intent();
             intent.SetType("image/*");
             intent.SetAction(Intent.ActionGetContent);
+            //start the picture picker activity (resumes in mainactivity)
+            MainActivity.Instance.StartActivityForResult
+                (
+                    Intent.CreateChooser(intent, "SelectPhoto"),
+                    MainActivity.PickImageId
+                );
             //save the TaskCompletion object as a Mainactivity property
             MainActivity.Instance.PickImageTaskCompletionSource = new TaskCompletionSource<Stream>();
 

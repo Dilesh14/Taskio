@@ -5,9 +5,12 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
             >
     <ContentPage.Content>
-                <ScrollView  Orientation="Vertical">
+        <StackLayout>
+            <ScrollView  Orientation="Vertical">
                 <StackLayout x:Name="MainStack"/>
             </ScrollView>
-                <!--<Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Command="{Binding ClickCommand}" x:Name="ClickBtn"/>-->
+            <Image x:Name="image"/>
+            <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

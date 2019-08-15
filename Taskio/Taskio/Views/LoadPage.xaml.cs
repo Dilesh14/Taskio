@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using Taskio.Helpers;
+using Taskio.Interface;
+using Taskio.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Taskio.Database;
-using System.Windows.Input;
-using FFImageLoading.Forms;
-using Taskio.ViewModel;
-using Taskio.Helpers;
 
 namespace Taskio.Views
 {
@@ -54,6 +51,10 @@ namespace Taskio.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+        }
+        private void ClickBtn_Clicked(object sender, EventArgs e)
+        {
+            App.GlobalNavigation.PushAsync(new ImagePickerPage());
         }
     }
 }
