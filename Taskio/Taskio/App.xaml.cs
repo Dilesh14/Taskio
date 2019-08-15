@@ -12,8 +12,8 @@ namespace Taskio
     public partial class App : Application
     {
         public static INavigation GlobalNavigation { get; private set; }
-        public static List<string> GetPhotoPathAnywhere { get; protected set; }
-        public App(List<string> photoPath)
+        public static IDictionary<string,string> GetPhotoPathAnywhere { get; protected set; }
+        public App(IDictionary<string,string>photoPath)
         {
             InitializeComponent();
             GetPhotoPathAnywhere = photoPath;
@@ -21,7 +21,7 @@ namespace Taskio
             //masterDetail.Title = "TASKIO";
             //masterDetail.Detail = new LoadPage();
             //masterDetail.Master = new SideNavBar();
-            var rootPage = new NavigationPage(new LoadPage());
+            var rootPage = new NavigationPage(new LoadPage(photoPath));
             GlobalNavigation = rootPage.Navigation;
             MainPage = rootPage;
         }

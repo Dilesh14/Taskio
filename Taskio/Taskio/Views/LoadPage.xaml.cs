@@ -1,36 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using Taskio.Helpers;
+using Taskio.Interface;
+using Taskio.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Taskio.Database;
+
 namespace Taskio.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoadPage : ContentPage
-	{
-		public LoadPage ()
-		{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoadPage : ContentPage
+    {
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; }
+        }
+        private IList<string> PathList = new List<string>();
+        public ViewModelForSwipe _viewModel;
+        
+        
+        public LoadPage(IDictionary<string, string> pics)
+        {
             InitializeComponent();
-            Grid.BackgroundColor = Color.FromRgba(0, 48, 125,1);
-            data db = new data();
-            db.add();
-            int col =0;
-            for (int i = 0; i < App.GetPhotoPathAnywhere.Count; i++)
+            foreach (KeyValuePair<string, string> PhotoPath in pics)
             {
-                col = i % 2 == 0 ? 0 : 1;
-                //ItemView l1 = new ItemView(db.Funiture[i]);   
-                Label l1 = new Label() {Text = App.GetPhotoPathAnywhere[i] };
-                Grid.Children.Add(l1);
-                Grid.SetRow(l1,i/2);Grid.SetColumn(l1, col);
+              
+                    PathList.Add(PhotoPath.Value);
+            }
+            _viewModel = new ViewModelForSwipe(PathList);
+            BindingContext = _viewModel;
+            foreach(string str in PathList)
+            {
+                SwipeViewContentHelperView l1 = new SwipeViewContentHelperView(str,_viewModel);
+                Frame f1 = new Frame { WidthRequest = 50, HeightRequest = 50, BorderColor = Color.Azure, BackgroundColor = Color.CornflowerBlue };
+                f1.Content = l1;
+               
+                MainStack.Children.Add(f1);
             }
         }
+
+        private Action<object> async()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
         }
-
+        private void ClickBtn_Clicked(object sender, EventArgs e)
+        {
+            App.GlobalNavigation.PushAsync(new ImagePickerPage());
+        }
     }
 }
