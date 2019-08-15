@@ -8,43 +8,42 @@ using Xamarin.Forms.Xaml;
 using Taskio.Database;
 using System.Windows.Input;
 using FFImageLoading.Forms;
+using Taskio.ViewModel;
+using Taskio.Helpers;
 
 namespace Taskio.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoadPage : ContentPage
     {
-        public ICommand ClickCommand { get; set; }
         private bool _isBusy;
         public bool IsBusy
         {
             get { return _isBusy; }
             set { _isBusy = value; }
         }
-        public delegate IDictionary<string, string> LoadDevice();
-        public LoadDevice LoadPhotos;
-        public LoadPage(IDictionary<string,string> pics)
+        private IList<string> PathList = new List<string>();
+        public ViewModelForSwipe _viewModel;
+        
+        
+        public LoadPage(IDictionary<string, string> pics)
         {
             InitializeComponent();
-            Grid.BackgroundColor = Color.FromRgba(0, 48, 125, 1);
-            data db = new data();
-            db.add();
-            int col = 0;
-            int i = 0;
             foreach (KeyValuePair<string, string> PhotoPath in pics)
             {
-                col = i % 2 == 0 ? 0 : 1;
-                //ItemView l1 = new ItemView(db.Funiture[i]);   
-                CachedImage image = new CachedImage { Source = PhotoPath.Value, WidthRequest =200,HeightRequest = 200 };
-                Grid.Children.Add(image);
-                Grid.SetRow(image, i / 2); Grid.SetColumn(image, col);
-                i++;
+              
+                    PathList.Add(PhotoPath.Value);
             }
-            ClickCommand = new Command(async () =>
+            _viewModel = new ViewModelForSwipe(PathList);
+            BindingContext = _viewModel;
+            foreach(string str in PathList)
             {
-                await App.GlobalNavigation.PushAsync(new SwipableView());
-            });
-            ClickBtn.BindingContext = this;
+                SwipeViewContentHelperView l1 = new SwipeViewContentHelperView(str,_viewModel);
+                Frame f1 = new Frame { WidthRequest = 50, HeightRequest = 50, BorderColor = Color.Azure, BackgroundColor = Color.CornflowerBlue };
+                f1.Content = l1;
+               
+                MainStack.Children.Add(f1);
+            }
         }
 
         private Action<object> async()

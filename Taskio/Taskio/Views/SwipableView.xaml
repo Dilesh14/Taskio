@@ -10,13 +10,14 @@
              >
     <ContentPage.Content>
         <StackLayout>
-            <cards:CardsView ItemsSource="{Binding ItemSource}" x:Name="SwipeContainer">
+            <cards:CardsView ItemsSource="{Binding ItemSource}" x:Name="SwipeContainer" >
                 <cards:CardsView.ItemTemplate>
                     <DataTemplate>
                         <AbsoluteLayout>
                             <Frame>
-                                <Label  Text="{Binding Name}"/>
+                                <Label  Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" HeightRequest="200"/>
                             </Frame>
+                            <Image x:Name="Picture"/>
                         </AbsoluteLayout>
                     </DataTemplate>
                 </cards:CardsView.ItemTemplate>

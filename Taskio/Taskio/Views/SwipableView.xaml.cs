@@ -14,10 +14,11 @@ namespace Taskio.Views
     public partial class SwipableView : ContentPage
     {
         private ViewModelForSwipe _viewModel { get; set; }
-        public SwipableView()
+        public SwipableView(ViewModelForSwipe vm)
         {
             InitializeComponent();
-            _viewModel = new ViewModelForSwipe();
+            _viewModel = vm;
+            SwipeContainer.SetBinding(PanCardView.CardsView.SelectedItemProperty, nameof(ViewModelForSwipe.SelectedItem));
             SwipeContainer.BindingContext = _viewModel;
         }
     }

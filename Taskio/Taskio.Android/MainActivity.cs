@@ -11,20 +11,31 @@ using Android.Support.V4.Content;
 using Android;
 using Android.Support.V4.App;
 using static Android.Support.V4.App.ActivityCompat;
+using PanCardView;
+using PanCardView.Droid;
+using FFImageLoading.Forms.Droid;
+using Android.Content;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace Taskio.Droid
 {
-    [Activity(Label = "Taskio", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,LaunchMode =LaunchMode.SingleTop)]
+    [Activity(Label = "Taskio", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ActivityCompat.IOnRequestPermissionsResultCallback
     {
+        internal static MainActivity Instance { get; private set; }
         private PhotoObserver photoObserver;
         private DeviceManager deviceManager = new DeviceManager();
+        public static readonly int PickImageId = 1000;
+        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { get; set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
+            Instance = this;
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CardsViewRenderer.Preserve();
             if (ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.ReadExternalStorage) == Permission.Granted)
             {
                 IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();
@@ -62,6 +73,25 @@ namespace Taskio.Droid
         {
             base.OnResume();
             PhotoObserver.CreatePhotoObserver().RegisterPhotoObserver();
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
+        {
+            base.OnActivityResult(requestCode, resultCode, intent);
+            if (requestCode == PickImageId)
+            {
+                if ((resultCode == Result.Ok) && (intent != null))
+                {
+                    Android.Net.Uri uri = intent.Data;
+                    Stream stream = ContentResolver.OpenInputStream(uri);
+
+                    // Set the Stream as the completion of the Task
+                    PickImageTaskCompletionSource.SetResult(stream);
+                }
+                else
+                {
+                    PickImageTaskCompletionSource.SetResult(null);
+                }
+            }
         }
     }
 }
