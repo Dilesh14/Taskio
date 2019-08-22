@@ -7,6 +7,7 @@
              x:Class="Taskio.Views.SwipableView"
              xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
              xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             xmlns:viewModel ="clr-namespace:Taskio.ViewModel"
              >
     <ContentPage.Content>
         <StackLayout>
@@ -17,7 +18,11 @@
                             <Frame>
                                 <Label  Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" HeightRequest="200"/>
                             </Frame>
-                            <Image x:Name="Picture"/>
+                            <Image x:Name="Picture" Source="{Binding Source}">
+                                <Image.BindingContext>
+                                    <viewModel:ImageLoadingViewModel/>
+                                </Image.BindingContext>
+                            </Image>
                         </AbsoluteLayout>
                     </DataTemplate>
                 </cards:CardsView.ItemTemplate>
