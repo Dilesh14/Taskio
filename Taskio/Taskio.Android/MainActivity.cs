@@ -38,7 +38,7 @@ namespace Taskio.Droid
             CardsViewRenderer.Preserve();
             if (ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.ReadExternalStorage) == Permission.Granted)
             {
-                IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();
+                IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia().Result;
                 LoadApplication(new App(PhotoPath));
             }
             else
@@ -55,7 +55,7 @@ namespace Taskio.Droid
             {
                 if (grantResults.Length == 1 && grantResults[0] == Permission.Granted)
                 {
-                    IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();
+                    IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia().Result;
                     LoadApplication(new App(PhotoPath));
                 }
             }

@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.Database;
-using Android.Net;
-using Android.OS;
+﻿using Android.Database;
 using Android.Provider;
-using Android.Runtime;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
-using Android.Views;
-using Android.Widget;
-
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Taskio.Droid;
+using Taskio.Interface;
+using Xamarin.Forms;
+[assembly: Dependency(typeof(DeviceManager))]
 namespace Taskio.Droid
 {
-    public class DeviceManager
+    public class DeviceManager:IDeviceManager
     {
         private Android.Net.Uri uri = MediaStore.Images.Media.ExternalContentUri;
         string[] projection = { MediaStore.Images.ImageColumns.Id, MediaStore.Images.ImageColumns.Data };
@@ -30,11 +20,11 @@ namespace Taskio.Droid
         {
             
         }
-        public IDictionary<string,string> BuildImageMedia()
+        public async Task<IDictionary<string,string>> BuildImageMedia()
         {
             int count = 0;
             List<string> PhotoAndPath = new List<string>();
-            cursor = Application.Context.ApplicationContext.ContentResolver.Query(uri,projection,null,null);
+            cursor = Android.App.Application.Context.ApplicationContext.ContentResolver.Query(uri,projection,null,null);
             PhotoCount = cursor.Count;
             while (cursor.MoveToNext())
             {
