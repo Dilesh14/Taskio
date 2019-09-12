@@ -7,7 +7,7 @@
              x:Class="Taskio.Views.ImagePickerPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="SpinnerContainer">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="SpinnerContainer" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="Spinner" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
             <Image x:Name="image"

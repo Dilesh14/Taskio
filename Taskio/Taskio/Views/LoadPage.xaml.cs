@@ -56,5 +56,10 @@ namespace Taskio.Views
         {
             App.GlobalNavigation.PushAsync(new ImagePickerPage());
         }
+
+        private void ClickBtn1_Clicked(object sender, EventArgs e)
+        {
+            App.GlobalNavigation.PushAsync(new ToolTipTest());
+        }
     }
 }

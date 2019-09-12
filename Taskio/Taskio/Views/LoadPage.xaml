@@ -10,7 +10,8 @@
                 <StackLayout x:Name="MainStack"/>
             </ScrollView>
             <Image x:Name="image"/>
-            <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
+            <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Text="Image Picker" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
+            <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Text="ToolTipTest" Clicked="ClickBtn1_Clicked" x:Name="ClickBtn1"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

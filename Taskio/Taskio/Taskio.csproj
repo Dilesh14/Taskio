@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="CardsView" Version="2.1.7" />
+    <PackageReference Include="Forms9Patch" Version="1.6.7.2" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
@@ -29,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ContentViews\ToolTestFooter.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Extensions\ExpanadableListElement.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -59,5 +63,44 @@
     <EmbeddedResource Update="Views\SwipableView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ToolTipTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Extensions\ExpanadableListElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Extensions\ExpandableListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Helpers\SwipeViewContentHelperView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ImagePickerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoadPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ModelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SideNavBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StartAppLandingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SwipableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

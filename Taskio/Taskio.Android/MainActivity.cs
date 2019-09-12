@@ -36,6 +36,7 @@ namespace Taskio.Droid
             Instance = this;
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CardsViewRenderer.Preserve();
+            Forms9Patch.Droid.Settings.Initialize(this);
             if (ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.ReadExternalStorage) == Permission.Granted)
             {
                 IDictionary<string,string> PhotoPath = deviceManager.BuildImageMedia();

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Taskio.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Taskio.Views;
-using Android.Provider;
-using Android.Database;
-using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Taskio
