@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
+﻿using Android.App;
 using Android.Database;
-using Android.Net;
-using Android.OS;
 using Android.Provider;
-using Android.Runtime;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
-using Android.Views;
-using Android.Widget;
+using Taskio.Interface;
+using System.Collections.Generic;
 
 namespace Taskio.Droid
 {
-    public class DeviceManager
+    public class DeviceManager:IDeviceManager
     {
         private Android.Net.Uri uri = MediaStore.Images.Media.ExternalContentUri;
         string[] projection = { MediaStore.Images.ImageColumns.Id, MediaStore.Images.ImageColumns.Data };

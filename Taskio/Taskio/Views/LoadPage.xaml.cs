@@ -41,6 +41,12 @@ namespace Taskio.Views
                
                 MainStack.Children.Add(f1);
             }
+            ScrollView.Scrolled += ScrollView_Scrolled;
+        }
+
+        private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            ScrollCoOrdiantes.Text = e.ScrollY.ToString();
         }
 
         private Action<object> async()
@@ -60,6 +66,10 @@ namespace Taskio.Views
         private void ClickBtn1_Clicked(object sender, EventArgs e)
         {
             App.GlobalNavigation.PushAsync(new ToolTipTest());
+        }
+        private async void GoToLast(object sender, EventArgs e)
+        {
+            await ScrollView.ScrollToAsync(MainStack, ScrollToPosition.End, true);
         }
     }
 }
