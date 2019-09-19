@@ -19,7 +19,6 @@ namespace Taskio.Views
         {
             InitializeComponent();
             _viewModel = vm;
-            _SingleImageVM = new ImageLoadingViewModel(_viewModel.SelectedItem.Name);
             //Image image = this.FindByName<Image>("Picture");
             //image.Source = _SingleImageVM.Source;
             SwipeContainer.SetBinding(PanCardView.CardsView.SelectedItemProperty, nameof(ViewModelForSwipe.SelectedItem));

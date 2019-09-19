@@ -9,7 +9,7 @@ namespace Taskio.Droid
     public class DeviceManager:IDeviceManager
     {
         private Android.Net.Uri uri = MediaStore.Images.Media.ExternalContentUri;
-        string[] projection = { MediaStore.Images.ImageColumns.Id, MediaStore.Images.ImageColumns.Data };
+        string[] projection = { MediaStore.Images.ImageColumns.Id, MediaStore.Images.ImageColumns.Data, MediaStore.Images.ImageColumns.DateModified };
         public static int PERMISSION_TO_READ_PHOTO = 100;
         private IDictionary<string, string> PhotoInfo=new Dictionary<string,string>();
         ICursor cursor;
@@ -22,7 +22,7 @@ namespace Taskio.Droid
         {
             int count = 0;
             List<string> PhotoAndPath = new List<string>();
-            cursor = Application.Context.ApplicationContext.ContentResolver.Query(uri,projection,null,null);
+            cursor = Application.Context.ApplicationContext.ContentResolver.Query(uri,projection,null,null,"date_modified DESC");
             PhotoCount = cursor.Count;
             while (cursor.MoveToNext())
             {

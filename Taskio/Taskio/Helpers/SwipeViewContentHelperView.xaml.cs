@@ -22,7 +22,8 @@ namespace Taskio.Helpers
         {
             InitializeComponent();
             ViewName = name;
-            HolderName.Text = ViewName;
+            
+            HolderName.Text = ViewName ;
             _viewModel = vm;
             BindingContext = _viewModel;
             TapGesture.SetBinding(TapGestureRecognizer.CommandProperty, nameof(ViewModelForSwipe.CommandForPushPage));

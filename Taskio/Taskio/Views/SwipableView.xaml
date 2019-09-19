@@ -10,22 +10,20 @@
              xmlns:viewModel ="clr-namespace:Taskio.ViewModel"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <cards:CardsView ItemsSource="{Binding ItemSource}" x:Name="SwipeContainer" >
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <cards:CardsView ItemsSource="{Binding ItemSource}" x:Name="SwipeContainer" IsViewReusingEnabled="True" >
                 <cards:CardsView.ItemTemplate>
                     <DataTemplate>
-                        <AbsoluteLayout>
+                        <StackLayout>
+                            <Image x:Name="Picture" Source="{Binding Source}"/>
                             <Frame>
-                                <Label  Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" HeightRequest="200"/>
+                                <Label  Text="{Binding Name}"/>
                             </Frame>
-                            <Image x:Name="Picture" Source="{Binding Source}">
-                                <Image.BindingContext>
-                                    <viewModel:ImageLoadingViewModel/>
-                                </Image.BindingContext>
-                            </Image>
-                        </AbsoluteLayout>
+                        </StackLayout>
                     </DataTemplate>
                 </cards:CardsView.ItemTemplate>
+                    <controls:LeftArrowControl HorizontalOptions="Start" AbsoluteLayout.LayoutBounds="0.125,.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <controls:RightArrowControl HorizontalOptions="End" AbsoluteLayout.LayoutBounds="0.875,.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional" />
             </cards:CardsView>
         </StackLayout>
     </ContentPage.Content>

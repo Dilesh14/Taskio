@@ -10,5 +10,6 @@ namespace Taskio.Models
         public int Num { get; set; }
         public int quantity { get; set; }
         public string ImgSrc { get; set; }
+        public string Source { get; set; }
     }
 }

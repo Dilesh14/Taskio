@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Taskio.Helpers;
-using Taskio.Interface;
 using Taskio.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace Taskio.Views
 {
@@ -31,7 +29,9 @@ namespace Taskio.Views
               
                     PathList.Add(PhotoPath.Value);
             }
-            _viewModel = new ViewModelForSwipe(PathList);
+            var children = MainPage.Children;
+            Controls.Children.ToList().ForEach(x => children.Add(x));
+            _viewModel = new ViewModelForSwipe(PathList,children);
             BindingContext = _viewModel;
             foreach(string str in PathList)
             {

@@ -5,16 +5,17 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
             >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="" Text="Help" />
+        <ToolbarItem Icon="" Text="Help"  Command="{Binding ToolBarItemClickedCommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-    <StackLayout>
+    <StackLayout x:Name="MainPage">
             <Label x:Name="ScrollCoOrdiantes" FontSize="Small" FontAttributes="Bold"  HorizontalTextAlignment="Center"/>
             <ScrollView  Orientation="Vertical" x:Name="ScrollView">
                 <StackLayout x:Name="MainStack"/>
             </ScrollView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <StackLayout HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                <StackLayout x:Name="Controls" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
                     <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Text="Image Picker" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
                     <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Text="ToolTipTest" Clicked="ClickBtn1_Clicked" x:Name="ClickBtn1"/>
                 </StackLayout>

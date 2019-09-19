@@ -7,7 +7,7 @@
              x:Class="Taskio.Helpers.SwipeViewContentHelperView">
   <ContentView.Content>
       <StackLayout>
-          <Label x:Name="HolderName"/>
+          <Label x:Name="HolderName" />
       </StackLayout>
   </ContentView.Content>
 </ContentView>
