@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Taskio.Views.BudgetCalculatorView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <Label Text="Pay Per Hour"/>
+                    <Entry Text="{Binding PayPerHour,Mode=TwoWay}" Keyboard="Numeric" TextChanged="TextChanged" />
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <Label Text="Hours Worked Per Day"/>
+                    <Picker ItemsSource="{Binding HourOptions}" SelectedIndex="{Binding SelectedHourIndex,Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout Grid.Row="2">
+                    <Label Text="Number of days"/>
+                    <Picker ItemsSource="{Binding NumberOfDays}" SelectedIndex="{Binding SelectedNumberOfDaysIndex,Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout Grid.Row="3" IsVisible="{Binding IsDisplayResultVisible}">
+                    <Label Text="{Binding DisplayResultText}" TextColor="{Binding TextColor}"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout VerticalOptions="End">
+                <Button HorizontalOptions="CenterAndExpand" Text="Calculate"  VerticalOptions="Center" WidthRequest="350" IsEnabled="{Binding IsCalculateButtonEnabled}" Command="{Binding CalculateButtonClicked}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

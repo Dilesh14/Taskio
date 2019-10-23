@@ -71,5 +71,9 @@ namespace Taskio.Views
         {
             await ScrollView.ScrollToAsync(MainStack, ScrollToPosition.End, true);
         }
+        private async void BudgetCalculatorClicked(object sender, EventArgs e)
+        {
+            await App.GlobalNavigation.PushAsync(new BudgetCalculatorView());
+        }
     }
 }
