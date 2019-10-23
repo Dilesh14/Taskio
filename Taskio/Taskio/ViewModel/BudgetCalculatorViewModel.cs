@@ -73,6 +73,7 @@ namespace Taskio.ViewModel
             set
             {
                 _selectedHourIndex = value;
+                IsDisplayResultVisible = false;
                 OnPropertyChanged(nameof(SelectedHourIndex));
             }
         }
@@ -82,6 +83,7 @@ namespace Taskio.ViewModel
             set
             {
                 _selectedNumberOfDaysIndex = value;
+                IsDisplayResultVisible = false;
                 OnPropertyChanged(nameof(SelectedNumberOfDaysIndex));
             }
         }
@@ -110,7 +112,7 @@ namespace Taskio.ViewModel
                 IsCalculateButtonEnabled = false;
                 IsDisplayResultVisible = true;
                 TextColor = Color.Red;
-                DisplayResultText = $"Entered Number, {PayPerHour} is not accept";
+                DisplayResultText = $"Entered Number, {PayPerHour} is not accepted";
             }
             else
             {
