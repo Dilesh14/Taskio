@@ -75,5 +75,10 @@ namespace Taskio.Views
         {
             await App.GlobalNavigation.PushAsync(new BudgetCalculatorView());
         }
+
+        private async void StepSliderTest_Clicked(object sender, EventArgs e) 
+        {
+            await App.GlobalNavigation.PushAsync(new SliderTestPage());
+        }
     }
 }

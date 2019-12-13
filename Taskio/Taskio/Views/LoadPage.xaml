@@ -16,7 +16,10 @@
             </ScrollView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <StackLayout x:Name="Controls" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
-                    <Button HorizontalOptions="Start" BackgroundColor="BlanchedAlmond" Text="Image Picker" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button HorizontalOptions="Start" BackgroundColor="BlanchedAlmond" Text="Image Picker" Clicked="ClickBtn_Clicked" x:Name="ClickBtn"/>
+                        <Button HorizontalOptions="End" BackgroundColor="BlanchedAlmond" Text="Step Slider Test" Clicked="StepSliderTest_Clicked" x:Name="StepSliderButton"/>
+                    </StackLayout>
                     <Button HorizontalOptions="Center" BackgroundColor="BlanchedAlmond" Text="ToolTipTest" Clicked="ClickBtn1_Clicked" x:Name="ClickBtn1"/>
                     <Button HorizontalOptions="End"  BackgroundColor="BlanchedAlmond" Text="Budget Calculator" Clicked="BudgetCalculatorClicked" x:Name="BudgetCalculator"/>
                 </StackLayout>
