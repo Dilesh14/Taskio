@@ -13,8 +13,12 @@ namespace Taskio.CustomViews
         public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create(
             nameof(SelectedValue),typeof(int),typeof(CustomSlider_test),null,BindingMode.TwoWay);
 
+        public static readonly BindableProperty ItemSourceCountProperty = BindableProperty.Create(
+            nameof(ItemSourceCount), typeof(int), typeof(CustomSlider_test), null, BindingMode.Default);
+
         public IEnumerable<int> ItemSource { get; set; }
         public int SelectedValue { get; set; }
+        public int ItemSourceCount{ get; set; }
 
         public CustomSlider_test() 
         {

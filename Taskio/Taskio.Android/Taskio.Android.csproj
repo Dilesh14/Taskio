@@ -75,6 +75,7 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\CustomSlideRenderer.cs" />
     <Compile Include="DeviceManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PhotoObserver.cs" />
@@ -126,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

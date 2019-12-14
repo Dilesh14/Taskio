@@ -12,7 +12,7 @@ namespace Taskio.CustomViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomSlider : ContentView
     {
-        private int StepCount;
+        //private int StepCount;
 
         public static readonly BindableProperty ItemSourceProperty = BindableProperty.Create(
         nameof(ItemSource), typeof(IEnumerable<int>), typeof(CustomSlider), null, BindingMode.Default);
@@ -27,14 +27,12 @@ namespace Taskio.CustomViews
         public CustomSlider()
         {
             InitializeComponent();
-            ItemSource = new List<int> { 8,12,16,20,24};
+            ItemSource = new List<int> { 8,12,16,20};
+            Slider.ItemSourceCount = ItemSource.Count();
             Slider.ValueChanged += Slider_ValueChanged;
             Slider.Minimum = 0;
             Slider.Maximum = 100;
-            if(ItemSource != null) 
-            {
-                StepCount = 100 / ItemSource.Count();
-            }
+            
             Slider.BindingContext = this;
             Slider.PropertyChanged += Slider_PropertyChanged;
         }
@@ -54,26 +52,13 @@ namespace Taskio.CustomViews
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            var newValue = e.NewValue;
-            double mapValue = newValue / StepCount;
-            int bufferIndex = Convert.ToInt32(Math.Truncate(mapValue));
-            string text;
-            if (bufferIndex < 1)
-            {
-                text = ItemSource.ElementAt(0).ToString();
-            }
-            else if (bufferIndex >= ItemSource.Count() - 1) 
-            {
-                text = ItemSource.ElementAt(ItemSource.Count()-1).ToString();
-            }
-            else 
-            {
-                text = ItemSource.ElementAt(bufferIndex).ToString();
-            }
-            text = Slider.Value + "  Maps to " + ItemSource + text;
-            Label test1 = new Label { Text = text };
-            LabelHolder.Children.Clear();
-            LabelHolder.Children.Add(test1);
+            var newValue = e.NewValue * 10;
+            int index = Convert.ToInt32(newValue);
+            string text= index.ToString();
+            Label l1 = new Label { Text = text + $"Maps to {ItemSource.ElementAt(index)}"};
+            LabelTest.Children.Clear();
+            LabelTest.Children.Add(l1);
+
         }
         private void BuildSlider() 
         {
@@ -83,16 +68,16 @@ namespace Taskio.CustomViews
 
 
                 var thumbSize = Slider.Height;
-                var labelWidth = (Slider.Width - thumbSize) / (ItemSource.Count());
+                var labelWidth = (Slider.Width - thumbSize) / (ItemSource.Count() -1);
                 for (var i = 0; i < ItemSource.Count(); i++)
                 {
-                    var textWidth = 3;
+                    var textWidth = 1;
                     var margin = (thumbSize / 2) - (textWidth / 2);
                     margin = margin > 0 ? margin : 0;
                     Label label = new Label
                     {
                         Text = ItemSource.ElementAt(i).ToString(),
-                        WidthRequest = i == ItemSource.Count() - 1  ? thumbSize - margin : labelWidth -margin,
+                        WidthRequest = i == ItemSource.Count() - 1 ?  (labelWidth- thumbSize - margin)/2 : labelWidth -margin,
                         HorizontalTextAlignment = i == ItemSource.Count() -1 ? TextAlignment.End : TextAlignment.Start,
                         Margin = i == ItemSource.Count() - 1 ? new Thickness(0, 0, margin, 0) : new Thickness(margin, 0, 0, 0),
                         LineBreakMode = LineBreakMode.NoWrap
@@ -101,6 +86,11 @@ namespace Taskio.CustomViews
                     LabelHolder.Children.Add(label);
                 }
             }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Slider.Value = 50;
         }
     }
 }
