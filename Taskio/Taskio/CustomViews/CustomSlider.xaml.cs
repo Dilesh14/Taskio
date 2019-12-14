@@ -54,6 +54,7 @@ namespace Taskio.CustomViews
         {
             var newValue = e.NewValue * 10;
             int index = Convert.ToInt32(newValue);
+            SelectedValue = ItemSource.ElementAt(index);
             string text= index.ToString();
             Label l1 = new Label { Text = text + $"Maps to {ItemSource.ElementAt(index)}"};
             LabelTest.Children.Clear();
