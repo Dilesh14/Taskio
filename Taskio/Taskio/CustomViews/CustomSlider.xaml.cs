@@ -27,7 +27,7 @@ namespace Taskio.CustomViews
         public CustomSlider()
         {
             InitializeComponent();
-            ItemSource = new List<int> { 8,12,16,20};
+            ItemSource = new List<int> { 8,12,16,20,35,30};
             Slider.ItemSourceCount = ItemSource.Count();
             Slider.ValueChanged += Slider_ValueChanged;
             Slider.Minimum = 0;
@@ -69,22 +69,49 @@ namespace Taskio.CustomViews
 
 
                 var thumbSize = Slider.Height;
-                var labelWidth = (Slider.Width - thumbSize) / (ItemSource.Count() -1);
+                //var labelWidth = (Slider.Width - thumbSize) / (ItemSource.Count() -1);
+                var labelWidth = (Slider.Width) / (ItemSource.Count()-1);
                 for (var i = 0; i < ItemSource.Count(); i++)
                 {
                     var textWidth = 1;
                     var margin = (thumbSize / 2) - (textWidth / 2);
                     margin = margin > 0 ? margin : 0;
+                    double widthRequest = labelWidth ;
+                    if (i == 0)
+                    {
+                        widthRequest = labelWidth - 15+3;
+                    }
+                    else if (i == (ItemSource.Count() - 1)) 
+                    {
+                        widthRequest = 30; 
+                    }
+                   
                     Label label = new Label
                     {
                         Text = ItemSource.ElementAt(i).ToString(),
-                        WidthRequest = i == ItemSource.Count() - 1 ?  (labelWidth- thumbSize - margin)/2 : labelWidth -margin,
-                        HorizontalTextAlignment = i == ItemSource.Count() -1 ? TextAlignment.End : TextAlignment.Start,
-                        Margin = i == ItemSource.Count() - 1 ? new Thickness(0, 0, margin, 0) : new Thickness(margin, 0, 0, 0),
+                        //WidthRequest = i == ItemSource.Count() - 1 ?  (labelWidth- thumbSize - margin)/2 : labelWidth -margin,
+                        WidthRequest = widthRequest,
+                        //HorizontalTextAlignment = i == ItemSource.Count() -1 ? TextAlignment.End : TextAlignment.Start,
+                        HorizontalTextAlignment = TextAlignment.Start,
+                        //Margin = i == ItemSource.Count() - 1 ? new Thickness(0, 0, margin, 0) : new Thickness(margin, 0, 0, 0),
+                        //Margin = i == ItemSource.Count() - 1 ? new Thickness(0.5, 0, 0, 0) : new Thickness(0, 0, 0, 0),
                         LineBreakMode = LineBreakMode.NoWrap
                     };
                     label.BindingContext = this;
+                    double xOffset = i == 0 ?0 : i * labelWidth - .5;   
+                    if(i == 0) 
+                    {
+                        BoxView intiailSpacing = new BoxView
+                        {
+                            WidthRequest = 15 - 3,
+                            HeightRequest = 1,
+                            BackgroundColor = Color.Transparent
+                        };
+                        LabelHolder.Children.Add(intiailSpacing);
+                    }
+                    label.Layout(new Rectangle((xOffset),LabelHolder.Y,label.Width,label.Height));
                     LabelHolder.Children.Add(label);
+                 
                 }
             }
         }

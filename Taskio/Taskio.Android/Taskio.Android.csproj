@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\CustomSlideRenderer.cs" />
+    <Compile Include="CustomRenderers\CustomSliderViewRenderer.cs" />
     <Compile Include="DeviceManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PhotoObserver.cs" />

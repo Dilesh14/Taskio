@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -30,6 +31,11 @@ namespace Taskio.Droid.CustomRenderer
             if(this.Control != null) 
             {
                 var slider = (CustomSlider_test)this.Element;
+                Control.ProgressDrawable.SetColorFilter(
+                    new PorterDuffColorFilter(
+                        Xamarin.Forms.Color.FromHex("#dddddd").ToAndroid(),
+                        PorterDuff.Mode.SrcIn)
+                );
                 this.Control.TickMark = Resources.GetDrawable(Resource.Drawable.icon1);
                 Control.Max = slider.ItemSourceCount -1;
                 Control.Min = 0;

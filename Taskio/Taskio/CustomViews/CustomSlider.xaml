@@ -7,7 +7,7 @@
              xmlns:customViews="clr-namespace:Taskio.CustomViews"
              x:Class="Taskio.CustomViews.CustomSlider">
   <ContentView.Content>
-        <StackLayout x:Name="Main">
+        <StackLayout x:Name="Main" Spacing="0">
             <StackLayout x:Name="LabelHolder" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="0"/>
             <customViews:CustomSlider_test x:Name="Slider" HeightRequest="15" ThumbColor="Gray"/>
             <Button Text="test" Clicked="Button_Clicked"/>
