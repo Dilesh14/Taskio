@@ -112,8 +112,14 @@ namespace Taskio.CustomViews
                     }
                     label.Layout(new Rectangle((xOffset),LabelHolder.Y,label.Width,label.Height));
                     LabelHolder.Children.Add(label);
-                 
                 }
+                BoxView line = new BoxView
+                {
+                    HeightRequest = 1,
+                    WidthRequest = Slider.SeekBarWidth,
+                    BackgroundColor = Color.Black
+                };
+                hbox.Children.Add(line);
             }
         }
 

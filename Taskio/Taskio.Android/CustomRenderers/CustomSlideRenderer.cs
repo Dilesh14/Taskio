@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -40,6 +41,23 @@ namespace Taskio.Droid.CustomRenderer
                 Control.Max = slider.ItemSourceCount -1;
                 Control.Min = 0;
                 Control.Progress =(int)slider.Value;
+               
+            }
+        }
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+            if(Control == null && Element == null)  
+            {
+                return;
+            }
+            if(e.PropertyName == "Width") 
+            {
+                ((CustomSlider_test)Element).SeekBarWidth = Element.Width - Control.PaddingLeft + Control.ThumbOffset;// + Control.PaddingRight);
+            }
+            if(e.PropertyName == CustomSlider_test.SeekBarWidthProperty.PropertyName) 
+            {
+                Control.SetMinimumWidth(Convert.ToInt32(((CustomSlider_test)Element).SeekBarWidth));
             }
         }
     }

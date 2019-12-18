@@ -11,7 +11,7 @@
         <StackLayout x:Name="Main" Spacing="0">
             <StackLayout x:Name="LabelHolder" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="0"/>
             <customViews:CustomSlider_test x:Name="Slider"  ThumbColor="Gray"/>
-            <Button Text="test" Clicked="Button_Clicked"/>
+            <StackLayout x:Name="hbox" HorizontalOptions="Center"/>
             <StackLayout x:Name="LabelTest" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="0"/>
         </StackLayout>
     </ContentView.Content>

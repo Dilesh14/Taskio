@@ -16,9 +16,17 @@ namespace Taskio.CustomViews
         public static readonly BindableProperty ItemSourceCountProperty = BindableProperty.Create(
             nameof(ItemSourceCount), typeof(int), typeof(CustomSlider_test), null, BindingMode.Default);
 
+        public static readonly BindableProperty SeekBarWidthProperty = BindableProperty.Create(
+           nameof(SelectedValue), typeof(double), typeof(CustomSlider_test), null, BindingMode.TwoWay);
+
         public IEnumerable<int> ItemSource { get; set; }
         public int SelectedValue { get; set; }
         public int ItemSourceCount{ get; set; }
+        public double SeekBarWidth 
+        {
+            get { return (double)GetValue(SeekBarWidthProperty); }
+            set { SetValue(SeekBarWidthProperty, value); }
+        }
 
         public CustomSlider_test() 
         {
