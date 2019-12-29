@@ -5,12 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:customViews="clr-namespace:Taskio.CustomViews"
-             x:Class="Taskio.CustomViews.CustomSlider">
+             x:Class="Taskio.CustomViews.CustomSlider"
+            >
   <ContentView.Content>
         <StackLayout x:Name="Main" Spacing="0">
             <StackLayout x:Name="LabelHolder" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="0"/>
-            <customViews:CustomSlider_test x:Name="Slider" HeightRequest="15" ThumbColor="Gray"/>
-            <Button Text="test" Clicked="Button_Clicked"/>
+            <customViews:CustomSlider_test x:Name="Slider"  ThumbColor="Gray"/>
+            <StackLayout x:Name="hbox" HorizontalOptions="Center"/>
             <StackLayout x:Name="LabelTest" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="0"/>
         </StackLayout>
     </ContentView.Content>

@@ -27,7 +27,7 @@ namespace Taskio.CustomViews
         public CustomSlider()
         {
             InitializeComponent();
-            ItemSource = new List<int> { 8,12,16,20,35,30};
+            ItemSource = new List<int> { 8,12,16,20};
             Slider.ItemSourceCount = ItemSource.Count();
             Slider.ValueChanged += Slider_ValueChanged;
             Slider.Minimum = 0;
@@ -64,7 +64,7 @@ namespace Taskio.CustomViews
         private void BuildSlider() 
         {
             if(ItemSource != null) 
-            {
+           {
                 LabelHolder.Children.Clear();
 
 
@@ -79,18 +79,18 @@ namespace Taskio.CustomViews
                     double widthRequest = labelWidth ;
                     if (i == 0)
                     {
-                        widthRequest = labelWidth - 15+3;
+                        widthRequest = labelWidth -13;
                     }
                     else if (i == (ItemSource.Count() - 1)) 
                     {
-                        widthRequest = 30; 
+                        widthRequest = 30 -5; 
                     }
                    
                     Label label = new Label
                     {
                         Text = ItemSource.ElementAt(i).ToString(),
                         //WidthRequest = i == ItemSource.Count() - 1 ?  (labelWidth- thumbSize - margin)/2 : labelWidth -margin,
-                        WidthRequest = widthRequest,
+                        WidthRequest =  widthRequest,
                         //HorizontalTextAlignment = i == ItemSource.Count() -1 ? TextAlignment.End : TextAlignment.Start,
                         HorizontalTextAlignment = TextAlignment.Start,
                         //Margin = i == ItemSource.Count() - 1 ? new Thickness(0, 0, margin, 0) : new Thickness(margin, 0, 0, 0),
@@ -98,7 +98,7 @@ namespace Taskio.CustomViews
                         LineBreakMode = LineBreakMode.NoWrap
                     };
                     label.BindingContext = this;
-                    double xOffset = i == 0 ?0 : i * labelWidth - .5;   
+                    double xOffset = i==0? 13 : i * labelWidth - .5; 
                     if(i == 0) 
                     {
                         BoxView intiailSpacing = new BoxView
@@ -107,18 +107,25 @@ namespace Taskio.CustomViews
                             HeightRequest = 1,
                             BackgroundColor = Color.Transparent
                         };
+                        intiailSpacing.Layout( new Rectangle(0, label.Y, intiailSpacing.Width, label.Height));
                         LabelHolder.Children.Add(intiailSpacing);
                     }
                     label.Layout(new Rectangle((xOffset),LabelHolder.Y,label.Width,label.Height));
                     LabelHolder.Children.Add(label);
-                 
                 }
+                BoxView line = new BoxView
+                {
+                    HeightRequest = 1,
+                    WidthRequest = Slider.SeekBarWidth,
+                    BackgroundColor = Color.Black
+                };
+                hbox.Children.Add(line);
             }
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Slider.Value = 50;
+            Slider.Value = 0;
         }
     }
 }

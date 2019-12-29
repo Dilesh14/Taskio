@@ -8,7 +8,7 @@
              x:Class="Taskio.Views.SliderTestPage">
     <ContentPage.Content>
         <StackLayout>
-            <customViews:CustomSlider VerticalOptions="Center" />
+            <customViews:CustomSlider VerticalOptions="Center" WidthRequest="100"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,7 +14,7 @@ using Taskio.Droid.CustomRenderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(CustomSlider), typeof(CustomSliderViewRenderer))]
+//[assembly: ExportRenderer(typeof(CustomSlider), typeof(CustomSliderViewRenderer))]
 namespace Taskio.Droid.CustomRenderers
 {
     public class CustomSliderViewRenderer: ViewRenderer
