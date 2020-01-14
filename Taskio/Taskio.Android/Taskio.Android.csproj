@@ -61,6 +61,11 @@
     <PackageReference Include="Forms9Patch">
       <Version>1.6.7.2</Version>
     </PackageReference>
+    <PackageReference Include="TinyIoC">
+      <Version>1.3.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
       <Version>2.3.4</Version>
     </PackageReference>
@@ -83,6 +88,8 @@
     <Compile Include="PhotoPicker.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IText.cs" />
+    <Compile Include="Services\Text_Service.cs" />
     <Compile Include="SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>

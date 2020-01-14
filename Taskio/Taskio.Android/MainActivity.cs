@@ -1,22 +1,16 @@
-﻿using System;
-
+﻿using Android;
 using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-using System.Collections.Generic;
-using Android.Support.V4.Content;
-using Android;
-using Android.Support.V4.App;
-using static Android.Support.V4.App.ActivityCompat;
-using PanCardView;
-using PanCardView.Droid;
-using FFImageLoading.Forms.Droid;
 using Android.Content;
-using System.Threading.Tasks;
+using Android.Content.PM;
+using Android.OS;
+using Android.Runtime;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+using PanCardView.Droid;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Taskio.Droid
 {
